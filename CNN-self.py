@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.5.2
+# -*- coding: utf-8 -*-
 import numpy as np
 np.random.seed(1337)  # for reproducibility
 from keras.datasets import mnist
@@ -12,7 +14,7 @@ batch_size = 18
 nb_classes = 10
 epochs = 10
 # input image dimensions
-img_rows, img_cols =100,100
+img_rows, img_cols =50,100
 # number of convolutional filters to use
 nb_filters = 32
 # size of pooling area for max pooling
@@ -21,11 +23,11 @@ pool_size = (2, 2)
 kernel_size = (3, 3)
 
 # the data, shuffled and split between train and test sets
-(X_train, y_train) = picHandle.trainDataHandle()
-(X_test, y_test) = picHandle.testDataHandle()
-
+(X_train, y_train) = picHandle.trainDataHandle2()
+(X_test, y_test) = picHandle.testDataHandle2()
 print(len(X_train[0][0]))
 print(len(X_train[0]))
+#print(X_train)
 print(X_train.shape)
 # 根据不同的backend定下不同的格式
 if K.image_dim_ordering() == 'th':
@@ -33,7 +35,7 @@ if K.image_dim_ordering() == 'th':
     X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
     input_shape = (1, img_rows, img_cols)
 else:
-    X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
+    X_train =X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
     X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
     input_shape = (img_rows, img_cols, 1)
 
@@ -82,4 +84,13 @@ model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs,
 score = model.evaluate(X_test, Y_test, verbose=0)
 print('Test score:', score[0])
 print('Test accuracy:', score[1])
-print('Test accuracy:', score[1])
+
+model.save('CnnSelf.ckpt')
+
+result=model.predict(X_test)
+
+print(result)
+
+
+
+
