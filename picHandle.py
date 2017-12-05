@@ -143,7 +143,7 @@ def trainDataHandle3():
     y = np.array(Y)
 
     return (x, y)
-
+#image3训练的图片
 def testDataHandle3():
     X = list()
     Y = list()
@@ -152,6 +152,36 @@ def testDataHandle3():
         ele = item.split('e')
         picCat = ele[2].split('-')[0]
         X.append(imageHanle('image3/' + item))
+        Y.append(picCat)
+        print('Y-->',Y)
+    x = np.array(X)
+    y = np.array(Y)
+    print('y==>>',y)
+    return (x, y)
+
+#image200训练的图片，把图片的黑白化，然后把维度存放到X.list中，对应的图片类别也放到相应的Y.list中
+def trainDataHandle200():
+    X = list()
+    Y = list()
+    files = os.listdir('image200')
+    for item in files:
+        ele = item.split('e')
+        picCat = ele[2].split('-')[0]
+        X.append(imageHanle('image200/' + item))
+        Y.append(picCat)
+    x = np.array(X)
+    y = np.array(Y)
+    return (x, y)
+
+#image200训练的图片
+def testDataHandle200():
+    X = list()
+    Y = list()
+    files = os.listdir('image200')
+    for item in random.sample(files, 10):
+        ele = item.split('e')
+        picCat = ele[2].split('-')[0]
+        X.append(imageHanle('image200/' + item))
         Y.append(picCat)
         print('Y-->',Y)
     x = np.array(X)

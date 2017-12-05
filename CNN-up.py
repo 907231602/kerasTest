@@ -18,7 +18,7 @@ from keras.models import load_model
 
 # 全局变量
 batch_size = 18
-nb_classes = 3
+nb_classes = 3      #类别，即种类
 epochs = 1
 # input image dimensions
 img_rows, img_cols =50,100
