@@ -96,9 +96,8 @@ def testDataHandle2():
     y = np.array(Y)
     return(x,y)
 
-
+#image1训练的图片，通过循环把解析的图片的维度放入数组中
 def trainDataHandle22():
-
     area = np.zeros(shape=(210,49,100))
     files = os.listdir('image1')
     Y=list()
@@ -115,6 +114,7 @@ def trainDataHandle22():
 
     return area,Y
 
+#image1测试的图片，通过循环把解析的图片的维度放入数组中
 def testDataHandle22():
     area = np.zeros(shape=(10,49,100))
 
@@ -128,3 +128,33 @@ def testDataHandle22():
         area[j]= imageHanle('image1/' + item)
         Y.append(picCat)
     return area,Y
+
+#image3训练的图片，把图片的黑白化，然后把维度存放到X.list中，对应的图片类别也放到相应的Y.list中
+def trainDataHandle3():
+    X = list()
+    Y = list()
+    files = os.listdir('image3')
+    for item in files:
+        ele = item.split('e')
+        picCat = ele[2].split('-')[0]
+        X.append(imageHanle('image3/' + item))
+        Y.append(picCat)
+    x = np.array(X)
+    y = np.array(Y)
+
+    return (x, y)
+
+def testDataHandle3():
+    X = list()
+    Y = list()
+    files = os.listdir('image3')
+    for item in random.sample(files, 10):
+        ele = item.split('e')
+        picCat = ele[2].split('-')[0]
+        X.append(imageHanle('image3/' + item))
+        Y.append(picCat)
+        print('Y-->',Y)
+    x = np.array(X)
+    y = np.array(Y)
+    print('y==>>',y)
+    return (x, y)

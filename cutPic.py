@@ -86,9 +86,26 @@ def loginCut(path,num):
         y = y + h;
 
 
-
-def cutLoginType3():
-    pass
+#裁剪三种不同类型的图片各14张,参数：路径与图片类别
+def cutLoginType3(path,type):
+    for k in range(1,15):
+        im = Image.open(path+'_'+str(k)+".png");
+        im_size = im.size;
+        print("login图片宽度和高度分别是{}".format(im_size));
+        # 把图片平均分成10块
+        # 第1块           个数
+        w = im_size[0] / 13.66  # 设置被切长度  13.66 的倍数
+        h = im_size[1] / 14.56  # 设置被切宽度  7.28*2的倍数
+        x = 0  # 长
+        y = 0  # 宽
+        for i in range(15):  # 循环宽度8次
+            for j in range(14):  # 循环长度14次
+                region = im.crop((x, y, x + w, y + h))
+                region.save("image3\\crop_average" + str(type) + "-%d-%d-%d.png" % (k , i , j));
+                x = x + w;
+                y = y;
+            x = 0  # 高依次增加，宽度从0~~边界值
+            y = y + h;
 
 
 
@@ -96,14 +113,19 @@ if __name__ == "__main__":
     #im = Image.open("data\imageinit\\111.png")  # type:Image,Image
     #x=im.size
     #print(x)
-    loginCut('data\imageinit\\111.png', 1)
-    loginCut('data\imageinit\\222.png', 2)
-    loginCut('data\imageinit\\333.png', 3)
+
+    #裁剪imageinit里的三张图片
+    #loginCut('data\imageinit\\111.png', 1)
+    #loginCut('data\imageinit\\222.png', 2)
+    #loginCut('data\imageinit\\333.png', 3)
 
     #cutPicLogin();
     #cropLogin2('data\imageinit\\111.png', 1);
     #cropLogin2('data\imageinit\\222.png', 2);
     #cropLogin2('data\imageinit\\333.png', 3);
 
+    cutLoginType3('data\imageType3\\微博', 1)
+    cutLoginType3('data\imageType3\\移动', 2)
+    cutLoginType3('data\imageType3\\邮箱', 3)
 
 
