@@ -130,6 +130,175 @@ def cutLoginType4(path,type):
             x = 0  # 高依次增加，宽度从0~~边界值
             y = y + h;
 
+#截取测试图片，imageTest
+def loginCut5(path,num):
+
+    im = Image.open(path);
+    im_size = im.size;
+    print("login图片宽度和高度分别是{}".format(im_size));
+    # 把图片平均分成10块
+    # 第1块           个数
+    w = im_size[0] / 6.83  # 设置被切长度  13.66/2 的倍数
+    h = im_size[1] / 3.64 # 设置被切宽度      7.28/2的倍数
+    x = 0  # 长
+    y = 0  # 宽
+    for i in range(4):  # 循环宽度8次
+        for j in range(7):  # 循环长度14次
+            region = im.crop((x, y, x + w, y + h))
+            region.save("imageTests\\crop_average" + str(num) + "-%d-%d.png" % (i, j));
+            x = x + w;
+            y = y;
+        x = 0  # 高依次增加，宽度从0~~边界值
+        y = y + h;
+
+
+#根据图片类型裁剪登录界面
+def cutLoginPicByPicType(num):
+    if(num==1):
+        cutOneTypeLogin()
+    elif(num==2):
+        cutTwoTypeLogin()
+    elif(num==3):
+        cutThreeTypeLogin()
+    else:
+        print('该图片不属于该运行的三种范围')
+
+#裁剪第一张微博登录界面
+def cutOneTypeLogin():
+    path='data\imageTest\\微博_t2.jpg'
+    im = Image.open(path);
+    im_size = im.size;
+    print("login图片宽度和高度分别是{}".format(im_size));
+    x = 940
+    y = 165
+    w = 300
+    h = 290
+    region = im.crop((x, y, x + w, y + h))
+    im1=region.crop((0,0,155,50))
+    im1.save('imageTypeCrop\one_1_1.png')
+    im1=region.crop((155,0,300,50))
+    im1.save('imageTypeCrop\one_1_2.png')
+
+    im1=region.crop((0,50,300,100))
+    im1.save('imageTypeCrop\one_1_3.png')
+    im1 = region.crop((0, 100, 300, 150))
+    im1.save('imageTypeCrop\one_1_4.png')
+
+    im1 = region.crop((0, 150, 150, 170))
+    im1.save('imageTypeCrop\one_1_5.png')
+    im1 = region.crop((150, 150, 300, 170))
+    im1.save('imageTypeCrop\one_1_6.png')
+
+    im1 = region.crop((0, 170, 300, 220))
+    im1.save('imageTypeCrop\one_1_7.png')
+    im1 = region.crop((0, 220, 300, 250))
+    im1.save('imageTypeCrop\one_1_8.png')
+    im1 = region.crop((0, 250, 300, 280))
+    im1.save('imageTypeCrop\one_1_9.png')
+
+
+    region.save("imageTypeCrop\one_1.png")
+
+#裁剪第二张移动登录界面
+def cutTwoTypeLogin():
+    path = 'data\imageTest\\移动_t2.jpg'
+    im = Image.open(path);
+    im_size = im.size;
+    print("login图片宽度和高度分别是{}".format(im_size));
+    x = 680
+    y = 210 # 225
+    w = 450
+    h = 310 #310
+
+    region = im.crop((x, y, x + w, y + h))
+    region.save("imageTypeCrop\\two_2.png")
+
+    im1 = region.crop((0, 0, 450, 35))
+    im1.save('imageTypeCrop\\two_2_1.png')
+
+    im1 = region.crop((0, 35, 225, 70))
+    im1.save('imageTypeCrop\\two_2_2.png')
+    im1 = region.crop((225, 35, 450, 70))
+    im1.save('imageTypeCrop\\two_2_3.png')
+
+    im1 = region.crop((0, 70, 140, 110))
+    im1.save('imageTypeCrop\\two_2_4.png')
+    im1 = region.crop((140, 70, 300, 110))
+    im1.save('imageTypeCrop\\two_2_5.png')
+    im1 = region.crop((300, 70,450, 110))
+    im1.save('imageTypeCrop\\two_2_6.png')
+
+    im1 = region.crop((0, 110, 140, 135))
+    im1.save('imageTypeCrop\\two_2_7.png')
+    im1 = region.crop((140, 110, 300, 135))
+    im1.save('imageTypeCrop\\two_2_8.png')
+    im1 = region.crop((300, 110, 450, 135))
+    im1.save('imageTypeCrop\\two_2_9.png')
+
+    im1=region.crop((0,135,450,165))
+    im1.save('imageTypeCrop\\two_2_10.png')
+
+    im1=region.crop((0,165,450,185))
+    im1.save('imageTypeCrop\\two_2_11.png')
+
+    im1=region.crop((0,185,450,225))
+    im1.save('imageTypeCrop\\two_2_12.png')
+
+    im1 = region.crop((0, 225, 450, 250))
+    im1.save('imageTypeCrop\\two_2_13.png')
+
+    im1 = region.crop((0, 250, 450, 275))
+    im1.save('imageTypeCrop\\two_2_14.png')
+
+    im1 = region.crop((0, 275, 450, 310))
+    im1.save('imageTypeCrop\\two_2_15.png')
+
+
+#裁剪第一张邮箱登录界面
+def cutThreeTypeLogin():
+    path = 'data\imageTest\\邮箱_t2.jpg'
+    im = Image.open(path);
+    im_size = im.size;
+    print("login图片宽度和高度分别是{}".format(im_size));
+    x = 780
+    y = 210
+    w = 300
+    h = 460
+
+    region = im.crop((x, y, x + w, y + h))
+    region.save("imageTypeCrop\\three_3.png")
+
+    im1 = region.crop((0, 0, 150, 50))
+    im1.save("imageTypeCrop\\three_3_1.png")
+    im1 = region.crop((150, 0, 300, 50))
+    im1.save("imageTypeCrop\\three_3_2.png")
+
+    im1 = region.crop((0, 85, 300, 135))
+    im1.save("imageTypeCrop\\three_3_3.png")
+
+    im1 = region.crop((0, 135, 300, 195))
+    im1.save("imageTypeCrop\\three_3_4.png")
+
+    im1 = region.crop((0, 195, 300, 245))
+    im1.save("imageTypeCrop\\three_3_5.png")
+
+    im1 = region.crop((0, 245, 150, 295))
+    im1.save("imageTypeCrop\\three_3_6.png")
+    im1 = region.crop((150, 245, 300, 295))
+    im1.save("imageTypeCrop\\three_3_7.png")
+
+    im1 = region.crop((0, 295, 300, 345))
+    im1.save("imageTypeCrop\\three_3_8.png")
+
+    im1 = region.crop((0, 345, 300, 395))
+    im1.save("imageTypeCrop\\three_3_9.png")
+
+    im1 = region.crop((0, 395, 300, 430))
+    im1.save("imageTypeCrop\\three_3_10.png")
+
+    im1 = region.crop((0, 430, 300, 460))
+    im1.save("imageTypeCrop\\three_3_11.png")
+
 
 if __name__ == "__main__":
     #im = Image.open("data\imageinit\\111.png")  # type:Image,Image
@@ -153,7 +322,17 @@ if __name__ == "__main__":
 
 
     #截取200*200的图片，三种类型各14张
-    cutLoginType4('data\imageType3\\微博', 1)
-    cutLoginType4('data\imageType3\\移动', 2)
-    cutLoginType4('data\imageType3\\邮箱', 3)
+    #cutLoginType4('data\imageType3\\微博', 1)
+    #cutLoginType4('data\imageType3\\移动', 2)
+    #cutLoginType4('data\imageType3\\邮箱', 3)
 
+    #qq和微信截图有区别,微信比QQ多2px
+    #裁剪测试图片ImageTest
+    #loginCut5('data\imageTest\\微博_t2.jpg', 1);#(1366, 728)
+    #loginCut5('data\imageTest\\邮箱_t2.jpg', 3);#(1366, 728)
+    loginCut5('data\imageTest\\移动_t2.jpg',2);#(1366, 738)
+
+    #剪切图片
+    #cutOneTypeLogin()
+    #cutTwoTypeLogin()
+    #cutThreeTypeLogin()

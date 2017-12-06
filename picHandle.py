@@ -173,7 +173,7 @@ def trainDataHandle200():
     y = np.array(Y)
     return (x, y)
 
-#image200训练的图片
+#image200测试的图片
 def testDataHandle200():
     X = list()
     Y = list()
@@ -183,8 +183,24 @@ def testDataHandle200():
         picCat = ele[2].split('-')[0]
         X.append(imageHanle('image200/' + item))
         Y.append(picCat)
-        print('Y-->',Y)
+        #print('Y-->',Y)
     x = np.array(X)
     y = np.array(Y)
-    print('y==>>',y)
+    #print('y==>>',y)
+    return (x, y)
+
+#imageTests,验证测试的图片
+def testPredictDataHandle200():
+    X=list()
+    Y=list()
+    files = os.listdir('imageTests')
+    for item in files:
+        ele = item.split('e')
+        picCat = ele[2].split('-')[0]
+        X.append(imageHanle('imageTests/' + item))
+        Y.append(picCat)
+        #print('Y-->', Y)
+    x = np.array(X)
+    y = np.array(Y)
+    #print('y==>>', y)
     return (x, y)

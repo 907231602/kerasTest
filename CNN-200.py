@@ -39,6 +39,7 @@ print(len(X_train[0][0]))
 print(len(X_train[0]))
 #print(X_train)
 print(X_train.shape)
+
 # 根据不同的backend定下不同的格式
 if K.image_dim_ordering() == 'th':
     X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
